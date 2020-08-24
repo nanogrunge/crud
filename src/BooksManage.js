@@ -9,9 +9,9 @@ state = {
 //function to handle submit
 handleSubmit = (e) => {
     e.preventDefault();
-    let title = document.getElementById('title').value;
-    let aut = document.getElementById('author').value;
-    let pub = document.getElementById('publisher').value;
+    let title = this.state.title;
+    let aut = this.state.author;
+    let pub = this.state.publisher;
     if(title === '' || aut === '' || pub === '') {
         alert('Please fill in all fields', 'danger');
       } else {
@@ -24,23 +24,14 @@ handleSubmit = (e) => {
 //function for input
 handleTitle = (e) => {
 this.setState({
-    title:e.target.value
+    title:document.getElementById('title').value,
+    author:document.getElementById('author').value,
+    publisher:document.getElementById('publisher').value
     })
 }
-//
-handleAt = (e) => {
-    this.setState({
-        author:e.target.value
-    })
-}
-handlePublisher = (e) => {
-    this.setState({
-        publisher:e.target.value
-        })
-    }
 //function to handle updates
 handleUpdates = () =>{
-    console.log('im working');
+    console.log('books updated');
     this.props.updateList(this.state);
     this.setState({
         id:'', title:'', author:'', publisher:''
@@ -104,17 +95,15 @@ render(){
                 <form id="formu" >
                     <label> add new book</label>
                     <input id='title' type="text" placeholder='Title' onChange={this.handleTitle}  value ={this.state.title}/>
-                    <input id='author'type="text" placeholder='author' onChange={this.handleAt} value ={this.state.author}/>
-                    <input id='publisher'type="text" placeholder='Publisher' onChange={this.handlePublisher} value ={this.state.publisher}/>
+                    <input id='author'type="text" placeholder='author' onChange={this.handleTitle} value ={this.state.author}/>
+                    <input id='publisher'type="text" placeholder='Publisher' onChange={this.handleTitle} value ={this.state.publisher}/>
                 <button id='subbtn' onClick={this.handleSubmit} className='btn small blue'> Submit </button> 
                        
                 </form>
             <button id='updbtn' style={{display:'none'}}  onClick={this.handleUpdates} className="btn-small green"> Update</button>
             </div>
- 
         </div>
         )
     } 
 }
-
 export default BooksManage;

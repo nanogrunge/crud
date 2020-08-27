@@ -18,9 +18,7 @@ handleSubmit = (e) => {
 //function for input
 handleTitle = (e) => {
 this.setState({
-    title:document.getElementById('title').value,
-    author:document.getElementById('author').value,
-    publisher:document.getElementById('publisher').value
+    [e.target.name]: e.target.value
     })
 }
 //function to handle updates
@@ -88,9 +86,9 @@ render(){
          <div>
                     <label> add new book</label>
                 <form id="formu" onSubmit={this.handleSubmit}>
-                    <input required id='title' type="text" placeholder='Title' onChange={this.handleTitle}  value ={this.state.title}/>
-                    <input required id='author'type="text" placeholder='author' onChange={this.handleTitle} value ={this.state.author}/>
-                    <input required id='publisher'type="text" placeholder='Publisher' onChange={this.handleTitle} value ={this.state.publisher}/>
+                    <input required id='title' name="title" type="text" placeholder='Title' onChange={this.handleTitle}  value ={this.state.title}/>
+                    <input required id='author' name="author" type="text" placeholder='author' onChange={this.handleTitle} value ={this.state.author}/>
+                    <input required id='publisher' name="publisher" type="text" placeholder='Publisher' onChange={this.handleTitle} value ={this.state.publisher}/>
                 <button id='subbtn' type="submit" className='btn small blue'> Submit </button> 
                        
                 </form>

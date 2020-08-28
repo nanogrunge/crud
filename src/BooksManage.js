@@ -9,24 +9,16 @@ state = {
 //function to handle submit
 handleSubmit = (e) => {
     e.preventDefault();
-    let title = this.state.title;
-    let aut = this.state.author;
-    let pub = this.state.publisher;
-    if(title === '' || aut === '' || pub === '') {
-        alert('Please fill in all fields', 'danger');
-      } else {
+
     this.props.addBook(this.state);  
     this.setState({
        id:'', title:'', author:'', publisher:''
     })
- } 
 }
 //function for input
 handleTitle = (e) => {
 this.setState({
-    title:document.getElementById('title').value,
-    author:document.getElementById('author').value,
-    publisher:document.getElementById('publisher').value
+    [e.target.name]: e.target.value
     })
 }
 //function to handle updates
@@ -92,12 +84,12 @@ render(){
              </tbody>
          </table>                
          <div>
-                <form id="formu" >
                     <label> add new book</label>
-                    <input id='title' type="text" placeholder='Title' onChange={this.handleTitle}  value ={this.state.title}/>
-                    <input id='author'type="text" placeholder='author' onChange={this.handleTitle} value ={this.state.author}/>
-                    <input id='publisher'type="text" placeholder='Publisher' onChange={this.handleTitle} value ={this.state.publisher}/>
-                <button id='subbtn' onClick={this.handleSubmit} className='btn small blue'> Submit </button> 
+                <form id="formu" onSubmit={this.handleSubmit}>
+                    <input required id='title' name="title" type="text" placeholder='Title' onChange={this.handleTitle}  value ={this.state.title}/>
+                    <input required id='author' name="author" type="text" placeholder='author' onChange={this.handleTitle} value ={this.state.author}/>
+                    <input required id='publisher' name="publisher" type="text" placeholder='Publisher' onChange={this.handleTitle} value ={this.state.publisher}/>
+                <button id='subbtn' type="submit" className='btn small blue'> Submit </button> 
                        
                 </form>
             <button id='updbtn' style={{display:'none'}}  onClick={this.handleUpdates} className="btn-small green"> Update</button>
